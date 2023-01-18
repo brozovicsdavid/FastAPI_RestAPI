@@ -2,7 +2,9 @@ from bs4 import BeautifulSoup
 import requests
 import re
 
-def scrape(list):
+list = []
+
+def scrape():
      #scrape the data from the url
     url = 'http://www.imdb.com/chart/top'
     response = requests.get(url)
@@ -14,7 +16,6 @@ def scrape(list):
     ratings = [b.attrs.get('data-value')
     for b in soup.select('td.posterColumn span[name=ir]')]
 
-    list = []
     for index in range(0, len(movies)):
         
         movie_string = movies[index].get_text() 

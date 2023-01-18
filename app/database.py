@@ -1,6 +1,6 @@
 from databases import Database
 from fastapi import FastAPI
-from data import scrape
+from data import list
 
 #create the app
 app = FastAPI()
@@ -16,9 +16,8 @@ async def fetch_data():
     await database.execute(query=query1)
 
     #load the data into the database
-    list = []
     query2 = "INSERT INTO imdb(id, movie_title, ratings, year, cast) VALUES (:id, :movie_title, :ratings, :year, :cast)"
-    await database.execute_many(query=query2, values=scrape(list))
+    await database.execute_many(query=query2, values=list)
     
     #get the data from the database and return it with the API call
     query3 = "SELECT * FROM imdb"
